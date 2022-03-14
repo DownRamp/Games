@@ -4,7 +4,7 @@ import sys
 # pick word
 def pick_word():
     val= random.randint(0,5756)
-    txt_file = open("list.txt", "r")
+    txt_file = open("assets/list.txt", "r")
     content_list = txt_file.readlines()
     return content_list[val].strip()
 
