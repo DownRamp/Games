@@ -40,11 +40,12 @@ def game(player1,player2):
                 continue
             count = count + 1
 
-            # the minimum count
+            # the minimum count (xoxox)
             if(count >= 5):
                 # win scenarios (check all values around current move
                 # horizontal
-                # last value in row
+                # last value in row 3,6,9
+    
                 if(move%3 ==0):
                     if(board[move]==board[move-1]==board[move-2]!=' '):
                         winner(board[move])
@@ -63,7 +64,7 @@ def game(player1,player2):
                         break
 
                 # vertical
-                # last column
+                # last column 
                 if(int((move-1)/3)==2):
                     if(board[move]==board[move-3]==board[move-6]!=' '):
                         winner(board[move])

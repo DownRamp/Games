@@ -31,15 +31,16 @@ def close():
     root.destroy()
 
 def pick(selected, value):
-    global car_image, car_selection, car_num
+    global car_image, car_selection, car_num, racecar
     car_num = value
     car_image = car_selection[car_num]
+    racecar = pygame.image.load(car_image)
     
 def car(x,y):
     gameDisplay.blit(racecar, (x,y))
 
 def start_the_game():
-    global race_end, rectangle_draging,x, y,x_change,y_change ,car_speed, racecar
+    global race_end, rectangle_draging,x, y,x_change,y_change ,car_speed, racecar, car_image
     pygame.display.set_caption('Race')
     racecar = pygame.image.load(car_image)
     racecar.convert()
