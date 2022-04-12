@@ -30,7 +30,7 @@ def game():
    wallet = 100
    spin_cost = 8
  
-   while(wallet >0):
+   while(wallet >= spin_cost):
        wallet = wallet - spin_cost
        first = 0
        second = 0
