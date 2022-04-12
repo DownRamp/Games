@@ -77,14 +77,14 @@ def game():
  
 def rand_gen(start, end):
    # get seed
-   f = open("seed.txt", "r")
+   f = open("assets/seed.txt", "r")
    seed = int(f.read())
    mut = seed * seed
    new_string = str(mut)[0:9]
    new_seed = new_string[1:len(new_string)-1]
  
    # change seed for next use
-   c = open("seed.txt", "w")
+   c = open("assets/seed.txt", "w")
    c.write(new_seed)
  
    for i in new_seed:
