@@ -24,7 +24,7 @@ def game(player1,player2):
     count = 0
     try:
         while count <= 9:
-            print("Player "+player+" it’s your turn")
+            print(f"Player {player} it’s your turn")
             move = int(input())
             if(move >9 or move <1):
                 print("Invalid number")

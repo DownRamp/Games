@@ -3,7 +3,7 @@ import sys
 import tictactoe
 import twenty_forty_8
 
-list_games = ["2048", "snake", "sudoku", "tetris", "checkers", "chess", "trucks", "tictactoe", "slot_machine"]
+list_games = ["2048", "snake", "sudoku", "checkers", "chess", "trucks", "tictactoe", "slot_machine"]
 
 
 def read_user_cli_args():
@@ -17,12 +17,12 @@ def read_user_cli_args():
    parser.add_argument(
        "game", nargs="+", type=str, help="enter the game name"
    )
-   parser.add_argument(
-       "-i",
-       "--instructions",
-       action="store_true",
-       help="Instructions for game",
-   )
+   # parser.add_argument(
+   #     "-i",
+   #     "--instructions",
+   #     action="store_true",
+   #     help="Instructions for game",
+   # )
    parser.add_argument(
        "-l",
        "--list",
@@ -34,13 +34,16 @@ def read_user_cli_args():
 
 def game_pick(game_select, instructions =False):
    try:
-       if(game_select[0] == "tictactoe"):
+       if(game_select == list_games[6]):
            tictactoe.main()
-       elif(game_select[0] == "2048"):
+       elif(game_select == list_games[0]):
            twenty_forty_8.main()
+       else:
+           print("BAD")
+           sys.exit("Incorrect input -l to list games")
+
    except:
        sys.exit("ERROR")
-
 
 def game_list():
    global list_games
@@ -54,7 +57,8 @@ def game_list():
 
 if __name__ == "__main__":
    user_args = read_user_cli_args()
-   if(not user_args.list):
-       game_pick(user_args.game[0], user_args.instructions)
-   else:
+   print(user_args)
+   if(user_args.list):
        game_list()
+   elif(user_args.game):
+       game_pick(user_args.game[1])
