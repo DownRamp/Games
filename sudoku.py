@@ -1,22 +1,24 @@
 import random
-import copy
-import array
+import numpy as np
+
+grid = []
+fin_grid = []
+happened = False
 
 
 def make_sudoku(difficulty):
-    value = "123456789"
+    global grid, fin_grid, happened
+    values = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    happened = False
+    grid = [[0 for i in range(9)] for j in range(9)]
 
-    while True:
-        grid = []
-        for i in range(9):
-            grid.append(array.array('u', value))
-            random.shuffle(grid[i])
+    random.shuffle(values)
+    for i in range(9):
+        grid[i][0] = values[i]
 
-        if check_solvable(grid):
-            break
-        print("CONINTUED")
+    generate()
 
-    print("CREATED")
+    print("CREATED BASE GRID")
     squares_to_remove = 0
     if difficulty == 0:
         squares_to_remove = 36
@@ -27,31 +29,43 @@ def make_sudoku(difficulty):
     else:
         return
 
-    print("STARTING SUDOKU")
+    print("STARTING CLEAN UP FOR SUDOKU PUZZLE")
     while squares_to_remove > 0:
-        x = random.int(0, 9)
-        y = random.int(0, 9)
-        if grid[x][y] != 0:
-            grid[x][y] = 0
+        x = random.randint(0, 8)
+        y = random.randint(0, 8)
+        if fin_grid[x][y] != 0:
+            fin_grid[x][y] = 0
             squares_to_remove -= 1
-    print(grid)
+    print(np.matrix(fin_grid))
 
 
-def print_grid(grid):
-    for i in range(9):
-        for j in range(9):
-            print("___")
-            print(f"|{grid[i][j]}|")
-            print("___")
+def generate():
+    global grid, happened, fin_grid
+    if happened:
+        return
+    for y in range(9):
+        for x in range(9):
+            if grid[y][x] == 0:
+                for n in range(1, 10):
+                    if possible(y, x, n):
+                        grid[y][x] = n
+                        generate()
+                        grid[y][x] = 0
+                return
+
+    if not happened:
+        fin_grid = list(map(list, grid))
+        happened = True
 
 
-def possible(y, x, n, grid):
+def possible(y, x, n):
+    global grid
+
     # check row
     count = 0
     for i in range(0, 9):
         if grid[y][i] == n:
-            count +=1
-    if count >1: return False
+            return False
     # check column
     for i in range(0, 9):
         if grid[i][x] == n:
@@ -62,14 +76,6 @@ def possible(y, x, n, grid):
     for i in range(0, 3):
         for j in range(0, 3):
             if grid[y0 + i][x0 + j] == n:
-                return False
-    return True
-
-
-def check_solvable(grid):
-    for y in range(9):
-        for x in range(9):
-            if not possible(y, x, grid[y][x], grid):
                 return False
     return True
 

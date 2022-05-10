@@ -125,6 +125,7 @@ def inputPlayers():
 
     return (player1,player2)
 
-instructions()
-a,b = inputPlayers()
-game(a,b)
+def main():
+    instructions()
+    a,b = inputPlayers()
+    game(a,b)

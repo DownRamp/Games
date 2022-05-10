@@ -18,6 +18,8 @@ def main():
     attempted = set()
 
     while(word != guess):
+        print("--------------------")
+        print()
         print(f'You have {chances} number of chances left')
         if(guess != ""):
             print("INCORRECT")

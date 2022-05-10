@@ -126,6 +126,6 @@ def add_2(board, n):
  
    pos = random.randint(0,len(zero_x)-1)
    board[zero_x[pos]][zero_y[pos]] = 2
-if __name__ == '__main__':
-   instructions()
-   main_game(4)
+# if __name__ == '__main__':
+#    instructions()
+#    main_game(4)

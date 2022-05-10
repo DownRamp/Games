@@ -23,7 +23,6 @@ def gen_food():
    return food
  
 def game():
-  
    game_over = False
    x = 500
    y = 500
@@ -71,7 +70,7 @@ def game():
                game_over = True
               
        snake_body.append(snake_head)
-        if(len(snake_body) > snake_size):
+       if(len(snake_body) > snake_size):
            del snake_body[0]
  
        snake(snake_body)
