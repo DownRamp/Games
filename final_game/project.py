@@ -197,6 +197,8 @@ class Player(_Physics, pygame.sprite.Sprite):
         if pygame.time.get_ticks() - self.update_time > animation_cooldown:
             self.update_time = pygame.time.get_ticks()
             self.frame_index += 1
+        if self.rect.center[0] <0 or self.rect.center[1] <0 or self.rect.center[0] > screen_width or self.rect.center[1] > screen_height:
+            self.death()
         #if the animation has run out then reset back to the start
         if self.frame_index >= len(self.animation_list[self.action]):
             if self.action == 3:
@@ -333,14 +335,14 @@ class Control(object):
         return text, rect
 
     def make_obstacles(self):
-        floor = Block(pygame.Color("black"), (100, screen_height - bottom_panel, 890, 10))
+        floor = Block(pygame.Color("darkgreen"), (100, screen_height - bottom_panel, 890, 10))
         static = []
         # (250, 780, 200, 100)
-        top = 500
+        top = 0
         for i in range(4):
             left = random.randint(100, 980)
             top += 100
-            static.append(Block(pygame.Color("black"), (left, top, 200, 25)))
+            static.append(Block(pygame.Color("darkgreen"), (left, top, 200, 25)))
         return pygame.sprite.Group(floor, static)
 
     def update_viewport(self, speed):
