@@ -422,7 +422,7 @@ class Control(object):
 
     def draw_text(self, text, font, text_col, x, y):
         img = font.render(text, True, text_col)
-        screen.blit(img, (x, y))
+        self.screen.blit(img, (x, y))
 
     #function for drawing background
     def draw_bg(self):
@@ -435,6 +435,20 @@ class Control(object):
         y = (screen_height - bottom_panel + 10)
         #show knight stats
         self.draw_text(txt, font, color, 100, y)
+
+def main():
+    pygame.init()
+    # menu -> character select -> game
+    screen = pygame.display.set_mode((screen_width, screen_height))
+    pygame.display.set_caption('Battle')
+
+    clock = pygame.time.Clock()
+
+    os.environ['SDL_VIDEO_CENTERED'] = '1'
+    run_it = Control()
+    run_it.main_loop()
+    pygame.quit()
+    sys.exit()
 
 if __name__ == "__main__":
     pygame.init()
