@@ -1,7 +1,7 @@
 #!/usr/bin/python3.4
 # Setup Python ----------------------------------------------- #
 import pygame, sys
-import project
+import game
 
 # Setup pygame/window ---------------------------------------- #
 mainClock = pygame.time.Clock()
@@ -9,7 +9,7 @@ from pygame.locals import *
 
 pygame.init()
 pygame.display.set_caption('Fight Knight')
-screen = pygame.display.set_mode((500, 500), 0, 32)
+screen = pygame.display.set_mode((800, 550), 0, 32)
 background_img = pygame.image.load('img/Background/background.png').convert_alpha()
 
 font = pygame.font.SysFont(None, 20)
@@ -42,7 +42,7 @@ def main_menu():
 
         if button_1.collidepoint((mx, my)):
             if click:
-                project.main()
+                game.Control().mainloop()
         if button_2.collidepoint((mx, my)):
             if click:
                 options()
