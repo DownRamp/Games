@@ -383,6 +383,10 @@ class Control(object):
     def make_obstacles(self):
         floor = Block(pygame.Color("darkgreen"), (100, screen_height - bottom_panel, 890, 10))
         static = []
+        #static.append(Block(pygame.Color("darkgreen"), (100, 100, 200, 25)))
+        #static.append(Block(pygame.Color("darkgreen"), (700, 100, 200, 25)))
+        #static.append(Block(pygame.Color("darkgreen"), (400, 50, 200, 25)))
+        #static.append(Block(pygame.Color("darkgreen"), (400, 200, 200, 25)))
         return pygame.sprite.Group(floor, static)
 
     def draw_panel(self, player1, player2):
